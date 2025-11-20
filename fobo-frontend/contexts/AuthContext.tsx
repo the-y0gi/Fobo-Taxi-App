@@ -1,9 +1,10 @@
 // src/context/AuthContext.tsx
+"use client";
 import { createContext, useEffect, useState, ReactNode } from "react";
 import authService from "../api/authSevice";
 import { User } from "../types/auth";
 import { saveToken, getToken, clearToken } from "../utils/storage";
-
+import { AuthResponse } from "../types/auth";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const loadUser = async () => {
     try {
+      debugger
       const { data } = await authService.getProfile();
       setUser(data.user);
     } catch {
@@ -28,16 +30,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
 const login = async (email: string, password: string) => {
-  const { data } = await authService.login({
+  const response = await authService.login({
     email,
     password,
-    userType: "user", // required!
+    userType: "user"
   });
 
-  saveToken(data.tokens.accessToken);
+  const apiData = response.data.data;
+
+  // TYPESCRIPT CASTING (Optional)
+  const tokens = apiData.tokens as AuthResponse["tokens"];
+
+  saveToken(tokens.accessToken);
 
   await loadUser();
 };
+
 
   const logout = () => {
     clearToken();

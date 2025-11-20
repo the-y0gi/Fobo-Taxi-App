@@ -5,8 +5,8 @@ import { AuthResponse,
   UserRegistrationData } from "../types/auth";
 
 const authService = {
- login: (credentials: LoginCredentials) =>
-    api.post<AuthResponse>("/auth/login", credentials),
+login: (credentials: LoginCredentials) =>
+  api.post("/auth/login", credentials),
 
   register: (data: UserRegistrationData) =>
     api.post<AuthResponse>("/auth/register", data),

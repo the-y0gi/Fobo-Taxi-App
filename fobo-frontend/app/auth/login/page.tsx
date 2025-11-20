@@ -16,25 +16,36 @@ export default function UserLoginPage() {
 
 const handleLogin = async () => {
   try {
+    debugger
     setLoading(true);
 
-    const { data } = await authService.login({
+    const response = await authService.login({
       email: emailOrPhone,
       password,
-      userType: "user",   // REQUIRED (since auth.ts can't change)
+      userType: "user"
     });
 
-    localStorage.setItem("accessToken", data.tokens.accessToken);
-    localStorage.setItem("refreshToken", data.tokens.refreshToken);
+    const apiData = response.data.data;
 
+    const user = apiData.user;
+    const tokens = apiData.tokens;
+
+console.log("Saving token:", tokens.accessToken);
+    localStorage.setItem("accessToken", tokens);
+    console.log("Token after saving:", localStorage.getItem("accessToken"));
+    localStorage.setItem("refreshToken", tokens);
+
+    
     router.push("/user/dashboard");
+
   } catch (error) {
-    console.error("Login failed:", error);
-    alert("Invalid Email / Password");
+    console.error(error);
+    alert("Invalid credentials");
   } finally {
     setLoading(false);
   }
 };
+
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
