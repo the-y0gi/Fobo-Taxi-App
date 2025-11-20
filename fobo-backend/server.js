@@ -67,6 +67,8 @@ app.get('/health', (req, res) => {
 
 
 app.use('/api/auth', authRoutes);
+app.use("/api/ride", require("./routes/user"));
+
 
 // Socket Handler
 // require('./sockets/socketHandler')(io, redisClient);
