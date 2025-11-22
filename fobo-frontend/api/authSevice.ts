@@ -1,4 +1,3 @@
-// src/api/authService.ts
 import api from "./axiosInstance";
 import { AuthResponse,
   LoginCredentials,
