@@ -11,7 +11,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     debugger
     if (!loading && !user) {
-      router.replace("/auth/login"); // 🔥 FIXED HERE
+      router.replace("/auth/login"); 
     }
   }, [loading, user]);
 

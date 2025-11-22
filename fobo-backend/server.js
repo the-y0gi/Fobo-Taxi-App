@@ -18,12 +18,12 @@ const app = express();
 const server = http.createServer(app);
 
 // Redis
-const redisClient = Redis.createClient({
-  url: process.env.REDIS_URL
-});
+// const redisClient = Redis.createClient({
+//   url: process.env.REDIS_URL
+// });
 
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
-redisClient.connect();
+// redisClient.on('error', (err) => console.log('Redis Client Error', err));
+// redisClient.connect();
 
 // Socket.io
 const io = socketIo(server, {

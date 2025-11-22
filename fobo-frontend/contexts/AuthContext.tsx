@@ -18,16 +18,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const loadUser = async () => {
-    try {
-      debugger
-      const { data } = await authService.getProfile();
-      setUser(data.user);
-    } catch {
-      logout();
-    }
-    setLoading(false);
-  };
+const loadUser = async () => {
+  try {
+    const response = await authService.getProfile();
+    const user = response.data.data.user; // correct
+    setUser(user);
+  } catch {
+    logout();
+  }
+  setLoading(false);
+};
+
+
 
 const login = async (email: string, password: string) => {
   const response = await authService.login({
@@ -39,7 +41,7 @@ const login = async (email: string, password: string) => {
   const apiData = response.data.data;
 
   // TYPESCRIPT CASTING (Optional)
-  const tokens = apiData.tokens as AuthResponse["tokens"];
+  const tokens = response.data.data.tokens;
 
   saveToken(tokens.accessToken);
 

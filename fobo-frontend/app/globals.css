@@ -120,6 +120,31 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@keyframes slideDown {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s ease-out;
+}
+@keyframes smoothSlideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-smoothSlideUp {
+  animation: smoothSlideUp 0.45s ease-out forwards;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.45s ease-out forwards;
+}
+
 } */
 /* delete (L.Icon.Default.prototype as any)._getIconUrl;
 

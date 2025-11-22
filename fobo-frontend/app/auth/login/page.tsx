@@ -36,7 +36,8 @@ console.log("Saving token:", tokens.accessToken);
     localStorage.setItem("refreshToken", tokens);
 
     
-    router.push("/user/dashboard");
+    // router.push("/user/dashboard");
+    window.location.href = "/user/dashboard";
 
   } catch (error) {
     console.error(error);
