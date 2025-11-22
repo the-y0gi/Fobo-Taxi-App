@@ -1,0 +1,28 @@
+/* Slide up from just below the visible area */
+.animate-slideUp {
+  animation: slideUpPanel 0.35s ease-out forwards;
+}
+
+/* Fade-in overlay (unchanged) */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* NEW animation — slide from 30–40% lower, NOT 100% */
+@keyframes slideUpPanel {
+  from {
+    transform: translateY(40%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

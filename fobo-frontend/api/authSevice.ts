@@ -11,8 +11,8 @@ login: (credentials: LoginCredentials) =>
   register: (data: UserRegistrationData) =>
     api.post<AuthResponse>("/auth/register", data),
 
-  getProfile: () =>
-    api.get<AuthResponse>("/auth/me"),
+getProfile: () => api.get("/auth/me"),
+
 };
 
 export default authService;
