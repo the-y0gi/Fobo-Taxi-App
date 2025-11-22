@@ -55,7 +55,9 @@ const driverSchema = new mongoose.Schema({
     drivingLicense: String,
     vehicleRC: String,
     insurance: String,
-    aadhaar: String
+    aadhaar: String,
+     rcBook: String,  
+      panCard: String  
   },
   
   // Status & Location
@@ -90,7 +92,13 @@ const driverSchema = new mongoose.Schema({
   cancellationRate: {
     type: Number,
     default: 0
-  }
+  },
+  workingToday: {
+  activeTime: { type: String, default: "0h 0m" },
+  rideTime: { type: String, default: "0h 0m" }, 
+  breakTime: { type: String, default: "0h 0m" }
+},
+ rating: { type: Number, default: 3 }
 }, {
   timestamps: true
 });

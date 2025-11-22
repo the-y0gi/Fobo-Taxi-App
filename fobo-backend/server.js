@@ -12,6 +12,7 @@ const connectDB = require('./config/database');
 
 // Routes
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 const server = http.createServer(app);
@@ -67,6 +68,8 @@ app.get('/health', (req, res) => {
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
+
 app.use("/api/ride", require("./routes/user"));
 
 
